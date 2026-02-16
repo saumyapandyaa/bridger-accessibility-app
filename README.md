@@ -1,183 +1,128 @@
+# Bridger
 
-# Bridger: Accessibility Navigation and Networking App
+Accessibility-focused navigation and social networking platform designed to empower individuals with disabilities.
 
-## Introduction
-
-**Bridger** is an innovative web application designed to empower individuals with disabilities in the Durham region of Ontario, Canada. By combining navigation, accessibility data, and a social networking platform, Bridger addresses the lack of modern, practical applications catering to disabled individuals. 
-
-With **AODA-compliant** UI, geolocation data integration, venue accessibility ratings, and incentives through a points-based rewards system, Bridger is designed to be a comprehensive resource for disabled individuals.
-
-## Features
-
-- **User Authentication**: Secure user registration and login with bcrypt and JWT.
-- **Venue Accessibility Ratings**: Search and review venues for accessibility.
-- **Social Features**: Add friends, share locations, and send/accept friend requests.
-- **Rewards System**: Earn and redeem points for specific tasks like leaving feedback or submitting locations.
-- **Geolocation Integration**: Automatically fetch city and ZIP code during registration using the IP-API.
-- **Admin Features**: Admins can approve submitted venues and analyze user data.
-- **Dynamic UI**: Designed with high-contrast settings for visually impaired users.
-
-## Architecture
-
-Bridger utilizes a **3-tier architecture**:
-1. **Presentation Layer**: Frontend components built with React.js.
-2. **Business Logic Layer**: Backend services in Node.js and Express.js.
-3. **Data Layer**: MySQL database managed via Sequelize ORM.
+Bridger combines venue accessibility data, geolocation services, and community networking into a unified platform built with accessibility-first design principles.
 
 ---
 
-## Installation
+##  Problem Statement
 
-### Prerequisites
+Mainstream navigation and venue platforms rarely prioritize accessibility data. Individuals with mobility or visual impairments often lack reliable information about accessible locations.
 
-Ensure the following are installed on your system:
-- **Node.js** (v14 or above)
-- **MySQL** (v8.0 or above)
-- **npm** (Node Package Manager)
-- **Git**
+Bridger addresses this gap by providing:
 
-### Clone the Repository
+- Accessibility-aware venue discovery
+- User-submitted accessibility ratings
+- Community networking
+- Incentive-based engagement system
+- AODA-compliant UI design
 
-```bash
-git clone https://github.com/Yaraqm/Bridger.git
-cd Bridger
+---
+
+##  System Architecture
+
+Three-tier architecture:
+
+Frontend (React) → Backend (Node.js + Express REST API) → MySQL Database (via Sequelize ORM)
+
+The system cleanly separates presentation, business logic, and persistence layers.
+
+---
+
+##  Tech Stack
+
+Frontend:
+- React
+- Accessible UI design (high contrast, clear layout)
+
+Backend:
+- Node.js
+- Express.js
+- Sequelize ORM
+- bcrypt (secure password hashing)
+- JWT authentication
+
+Database:
+- MySQL
+
+External Integration:
+- IP Geolocation API (ip-api.com)
+
+---
+
+##  Core Features
+
+### Authentication & Security
+- Secure password hashing (bcrypt)
+- JWT-based session authentication
+- Role-based admin capabilities
+
+### Accessibility-Aware Venue Discovery
+- Search and rate venues based on accessibility
+- Submit new venue entries
+- Admin moderation and approval system
+
+### Social Networking
+- Friend requests
+- Location sharing
+- Community-driven discovery
+
+### Rewards System
+- Points earned for contributions
+- Incentivized accessibility feedback
+
+---
+
+##  Security Considerations
+
+- Passwords hashed using bcrypt
+- JWT tokens used for stateless authentication
+- Protected API routes with middleware validation
+- Input validation and ORM-level query abstraction
+
+---
+
+##  Running Locally
+
+Clone repository:
 ```
-
-### Setup the Backend
-
-1. Navigate to the `server` directory:
-   ```bash
-   cd server
-   ```
-
-2. Install backend dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Configure the `.env` file:
-   - Create a `.env` file in the `server` directory and add:
-     ```plaintext
-     DB_NAME=your_database_name
-     DB_USER=your_database_user
-     DB_PASSWORD=your_database_password
-     DB_HOST=localhost
-     DB_PORT=3306
-     JWT_SECRET=your_jwt_secret
-     ```
-
-4. Run database migrations and seeders:
-   ```bash
-   npx sequelize-cli db:migrate
-   npx sequelize-cli db:seed:all
-   ```
-
-5. Start the backend server:
-   ```bash
-   npm start
-   ```
-
-### Setup the Frontend
-
-1. Navigate to the `client` directory:
-   ```bash
-   cd ../client
-   ```
-
-2. Install frontend dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Start the frontend development server:
-   ```bash
-   npm start
-   ```
-
-4. Open the application in your browser:
-   ```
-   http://localhost:3000
-   ```
+git clone https://github.com/Yaraqm/Bridger.git  
+cd Bridger  
+```
+Backend setup:
+```
+cd server  
+npm install  
+npm start  
+```
+Frontend setup:
+```
+cd client  
+npm install  
+npm start  
+```
+Application runs at: http://localhost:3000
 
 ---
 
-## Usage
+##  What This Project Demonstrates
 
-### User Features
-1. Register an account:
-   - City and ZIP code will be automatically added via IP-based geolocation.
-2. Search for accessible venues:
-   - View, review, and rate venues for their accessibility.
-3. Send and accept friend requests:
-   - Share starred locations with friends.
-
-### Admin Features
-- Approve/reject venue submissions.
-- View and analyze user data, including location details.
+- Full-stack application development
+- Three-tier system design
+- Secure authentication patterns
+- Database modeling with relational schema
+- REST API design
+- Accessibility-first UI principles
+- Community-driven platform logic
 
 ---
 
-## Folder Structure
+##  Future Enhancements
 
-### Client
-- **Components**: Contains React components for user interface (e.g., `Login.js`, `Register.js`).
-- **Pages**: Contains React pages representing different application views.
-
-### Server
-- **Config**: Database configuration.
-- **Models**: Sequelize models representing database tables.
-- **Routes**: API endpoints for user interactions (e.g., `userRoutes.js`).
-
----
-
-## Technologies Used
-
-### Frontend
-- **React.js**: Frontend library for building dynamic user interfaces.
-- **CSS**: Styling for UI components.
-
-### Backend
-- **Node.js**: Backend runtime.
-- **Express.js**: Framework for REST API.
-- **Sequelize**: ORM for MySQL database management.
-- **bcrypt**: Secure password hashing.
-- **JWT**: Authentication via JSON Web Tokens.
-
-### Database
-- **MySQL**: Relational database for storing user, venue, and rewards data.
-
----
-
-## API Integration
-
-### IP Geolocation API
-Used to fetch user location data (city and ZIP code) during registration. Integrated via `http://ip-api.com/json`.
-
----
-
-## Contribution Guide
-
-1. Fork the repository.
-2. Create a feature branch:
-   ```bash
-   git checkout -b feature-name
-   ```
-3. Commit your changes:
-   ```bash
-   git commit -m "Add new feature"
-   ```
-4. Push to the branch:
-   ```bash
-   git push origin feature-name
-   ```
-5. Create a pull request.
-
----
-
-## Future Enhancements
-
-1. **Mobile App**: Transition to a mobile app architecture for on-the-go navigation.
-2. **Voice Features**: Add voice-to-text and text-to-speech for visually impaired users.
-3. **Advanced Geolocation**: Integrate real-time GPS for better navigation.
-
----
+- Mobile-native application
+- Real-time GPS navigation
+- Voice accessibility (speech-to-text / text-to-speech)
+- Advanced analytics dashboard
+- Cloud deployment with containerization
+- Role-based access refinement
